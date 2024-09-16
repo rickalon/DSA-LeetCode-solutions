@@ -1,42 +1,47 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-    int i{0},j{0};
-    auto iii{matrix.front().size()-1},jjj{matrix.size()-1};
-    int direction{1};
-    vector<int> result;
-    while(i<=iii && j <=jjj){
-    
-    if(direction ==1){
-    for(int a = i;a<=iii;a++){
-        result.push_back(matrix[j][a]);
+    vector<int> sol;
+    int m{(int)matrix.size()},n{(int)matrix[0].size()};
+    int i=0,j=0;
+    int up=0,right=1,down=2,left=3;
+    int direction = right;
+    int up_wall = 0,right_wall=n,down_wall=m,left_wall=-1;
+    while(sol.size() != m*n){
+        if(direction == right){
+            while(j<right_wall){
+                sol.push_back(matrix[i][j]);
+                j++;
+            }
+            i++;j--;
+            right_wall--;
+            direction=down;
+        }
+        else if(direction==down){
+            while(i<down_wall){
+                sol.push_back(matrix[i][j]);
+                i++;
+            }
+            i--;j--;
+            down_wall--;direction=left;
+        }
+        else if(direction==left){
+            while(j>left_wall){
+                sol.push_back(matrix[i][j]);
+                j--;
+            }
+            j++;i--;
+            left_wall++;direction=up;
+        }
+        else{
+            while(i>up_wall){
+                sol.push_back(matrix[i][j]);
+                i--;
+            }
+            i++;j++;
+            direction=right;up_wall++;
+        }
     }
-    j++;
-    direction = 2;
-    }
-    else if(direction == 2){
-    for(int a = j;a<=jjj;a++){
-        result.push_back(matrix[a][iii]);
-    }
-    iii--;
-    direction = 3;
-    }
-    else if(direction == 3){
-    for(int a = iii;a>=i;a--){
-        result.push_back(matrix[jjj][a]);
-    }
-    jjj--;
-    direction = 4;
-    }
-   else  if(direction ==4)
-    {
-    for(int a = jjj;a>=j;a--){
-        result.push_back(matrix[a][i]);
-    }
-    i++;
-    direction = 1;
-    }
-    }
-    return result;
+    return sol;  
     }
 };
