@@ -1,3 +1,5 @@
+//first var
+
 class Solution {
 public:
     int findClosestNumber(vector<int>& nums) {
