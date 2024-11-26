@@ -32,3 +32,30 @@
     array[pivot] = aux;
     return low+1;
     }
+
+ public static int HoarePartition(int[] array,int left,int right){
+        int pivot = right;
+        int i = left-1;
+        int j = right+1;
+        while(true)        
+        {
+            do { 
+                i++;
+            } while (array[i] < array[pivot]);
+
+            do { 
+                j--;
+            } while (array[j] > array[pivot]);
+            if(i >= j){
+                System.out.println(i+","+j);
+                return j;
+            }
+            swap(i,j,array);
+        }
+    }
+
+    public static void swap(int i,int j,int ...array){
+        int aux = array[i];
+        array[i] = array[j];
+        array[j] = aux;
+    }
