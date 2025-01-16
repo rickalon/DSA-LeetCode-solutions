@@ -40,3 +40,22 @@ class Solution {
 
     }
 }
+
+class Solution {
+    public int maxDepth(Node root) {
+    if(root!=null && root.children.isEmpty()){
+        return 1;
+    }
+    if(root!=null){
+        int max = Integer.MIN_VALUE;
+        for(Node node : root.children)
+        {
+           
+           int res = maxDepth(node);
+           max = Math.max(max,res);
+        }
+        return 1 + max;
+    }
+    return 0;
+    }
+}
