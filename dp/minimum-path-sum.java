@@ -1,3 +1,4 @@
+//perf sol
 class Solution {
     int[][] mem;
     public int minPathSum(int[][] grid) {
